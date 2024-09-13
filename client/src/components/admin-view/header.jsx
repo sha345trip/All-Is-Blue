@@ -9,11 +9,11 @@ function AdminHeader({ setOpen }) {
   const navigate = useNavigate();
 
   function handleLogout() {
-    // dispatch(logoutUser());
-    dispatch(resetTokenAndCredentials());
-    sessionStorage.clear();
-    navigate("/auth/login");
-  }
+    dispatch(logoutUser());
+  //   dispatch(resetTokenAndCredentials());
+  //   sessionStorage.clear();
+  //   navigate("/auth/login");
+   }
 
   return (
     <header className="flex items-center justify-between px-4 py-3 bg-background border-b">
