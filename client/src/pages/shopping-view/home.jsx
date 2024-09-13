@@ -1,21 +1,12 @@
 import { Button } from "@/components/ui/button";
-import bannerOne from "../../assets/banner-1.webp";
-import bannerTwo from "../../assets/banner-2.webp";
-import bannerThree from "../../assets/banner-3.webp";
 import {
-  Airplay,
-  BabyIcon,
   ChevronLeftIcon,
   ChevronRightIcon,
-  CloudLightning,
-  Heater,
-  Images,
-  Shirt,
-  ShirtIcon,
-  ShoppingBasket,
-  UmbrellaIcon,
-  WashingMachine,
-  WatchIcon,
+  Home,
+  Instagram,
+  Mail,
+  Phone,
+  Youtube,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { useEffect, useState } from "react";
@@ -32,21 +23,13 @@ import ProductDetailsDialog from "@/components/shopping-view/product-details";
 import { getFeatureImages } from "@/store/common-slice";
 
 const categoriesWithIcon = [
-  { id: "men", label: "Men", icon: ShirtIcon },
-  { id: "women", label: "Women", icon: CloudLightning },
-  { id: "kids", label: "Kids", icon: BabyIcon },
-  { id: "accessories", label: "Accessories", icon: WatchIcon },
-  { id: "footwear", label: "Footwear", icon: UmbrellaIcon },
+  { id: "men", label: "Vases", backgroundImage:'/1.jpg' },
+  { id: "women", label: "Plates & Mugs", backgroundImage:'/2.jpg'},
+  { id: "kids", label: "Lamps", backgroundImage:'/3.jpg'},
+  { id: "accessories", label: "Oil Diffuser", backgroundImage:'/4.jpg'},
+  { id: "footwear", label: "Decoratives", backgroundImage:'/5.jpg'},
 ];
 
-const brandsWithIcon = [
-  { id: "nike", label: "Nike", icon: Shirt },
-  { id: "adidas", label: "Adidas", icon: WashingMachine },
-  { id: "puma", label: "Puma", icon: ShoppingBasket },
-  { id: "levi", label: "Levi's", icon: Airplay },
-  { id: "zara", label: "Zara", icon: Images },
-  { id: "h&m", label: "H&M", icon: Heater },
-];
 function ShoppingHome() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { productList, productDetails } = useSelector(
@@ -121,7 +104,7 @@ function ShoppingHome() {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-yell">
       <div className="relative w-full h-[600px] overflow-hidden">
         {featureImageList && featureImageList.length > 0
           ? featureImageList.map((slide, index) => (
@@ -161,7 +144,7 @@ function ShoppingHome() {
           <ChevronRightIcon className="w-4 h-4" />
         </Button>
       </div>
-      <section className="py-12 bg-gray-50">
+      <section className="py-12 bg-yell">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-8">
             Shop by category
@@ -172,30 +155,16 @@ function ShoppingHome() {
                 onClick={() =>
                   handleNavigateToListingPage(categoryItem, "category")
                 }
-                className="cursor-pointer hover:shadow-lg transition-shadow"
+                className="relative cursor-pointer hover:shadow-lg transition-shadow h-64"
+                style={{
+                  backgroundImage: `url(${categoryItem.backgroundImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                 // Adjust this value to increase or decrease opacity
+                }}
               >
-                <CardContent className="flex flex-col items-center justify-center p-6">
-                  <categoryItem.icon className="w-12 h-12 mb-4 text-primary" />
-                  <span className="font-bold">{categoryItem.label}</span>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-12 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-8">Shop by Brand</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {brandsWithIcon.map((brandItem) => (
-              <Card
-                onClick={() => handleNavigateToListingPage(brandItem, "brand")}
-                className="cursor-pointer hover:shadow-lg transition-shadow"
-              >
-                <CardContent className="flex flex-col items-center justify-center p-6">
-                  <brandItem.icon className="w-12 h-12 mb-4 text-primary" />
-                  <span className="font-bold">{brandItem.label}</span>
+                <CardContent className="flex flex-col justify-end p-6" >
+                  <span className="absolute bottom-4 text-white font-bold text-2xl ">{categoryItem.label}</span>
                 </CardContent>
               </Card>
             ))}
@@ -226,6 +195,54 @@ function ShoppingHome() {
         setOpen={setOpenDetailsDialog}
         productDetails={productDetails}
       />
+       <section className="py-12 relative bg-cover bg-center" style={{ backgroundImage:`url("/1.jpg")`}}>
+       <div className="absolute inset-0 bg-black opacity-50"></div> 
+        <div className="container mx-auto px-4 relative z-10">
+          <h2 className="text-3xl font-bold text-center mb-8 text-white ">
+           About Us
+          </h2>
+         <div>
+         <p className="text-bold text-2xl text-white text-center " > "House to Home: Where Tradition Meets Elegance.” </p>
+          <p className="text-2xl mx-4 text-white " >Welcome to All Blue, where tradition meets elegance. Our exquisite collection features authentic Jaipur blue pottery, crafted by skilled artisans preserving a centuries-old heritage.From vibrant mugs to intricate vases, each piece adds a touch of sophistication to your home. We are dedicated to quality and authenticity,supporting local craftsmanship.Transform your house into a home with our timeless, handcrafted blue pottery.</p>
+         </div>
+        </div>
+      </section>
+      <section className="py-12 relative bg-cover bg-center bg-custom ">
+  <div className="container mx-auto px-4 relative z-10 text-sona ">
+    <h2 className="text-3xl font-bold text-center mb-8">Contact Us</h2>
+    <div className="flex gap-8">
+      {/* First Section: Instagram, Phone, and YouTube */}
+      <div className="flex flex-col items-start gap-4 w-1/2">
+        <div className="flex items-center space-x-2">
+          <Instagram className="w-8 h-8" />
+          <span><a href="https://www.instagram.com/all__blueee?igsh=MWpqam44NzlsdHM3bA==" target="_blank" >Instagram</a></span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Phone className="w-8 h-8" />
+          <span><p> 6367485143 </p>
+             8278692437 </span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Youtube className="w-8 h-8" />
+          <span><a href="https://youtube.com/@allblueee?si=RGW14tPR21rU-C3x" target="_blank" >YouTube </a></span>
+        </div>
+      </div>
+      
+      {/* Second Section: Address and Email */}
+      <div className="flex flex-col items-start gap-4 w-1/2">
+        <div className="flex items-center space-x-2">
+          <Home className="w-10 h-10" />
+          <span>let's rebuild this. Inside the contact us section, I want three sections , one containing the instagram, phone and youtube.</span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Mail className="w-8 h-8" />
+          <span>G-Mail: allblueee2024@gmail.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p className="text-sona text-center " >&copy; All Blue 2024-25 </p>
+</section>
     </div>
   );
 }

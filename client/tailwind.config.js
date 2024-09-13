@@ -18,10 +18,13 @@ module.exports = {
     },
     extend: {
       colors: {
+        custom: "#002B58",
+        yell: '#F4F6D3',
+        sona: '#CAB650',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: "#F4F6D3",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
